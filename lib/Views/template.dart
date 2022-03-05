@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quantify/Views/templateList.dart';
+import 'camera.dart';
+import 'option.dart';
 import 'templateList.dart';
+import 'package:camera/camera.dart';
+// import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class Template extends StatefulWidget {
   const Template({Key? key}) : super(key: key);
@@ -10,6 +15,24 @@ class Template extends StatefulWidget {
 
 class _TemplateState extends State<Template> {
 
+  late CameraDescription _cameraDescription;
+
+
+  @override
+  void initState() {
+    super.initState();
+    availableCameras().then((cameras) {
+      final camera = cameras
+          .where((camera) => camera.lensDirection == CameraLensDirection.back)
+          .toList()
+          .first;
+      setState(() {
+        _cameraDescription = camera;
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +41,22 @@ class _TemplateState extends State<Template> {
       child: DefaultTabController(
         length: 8,
         child: Scaffold(
+          // floatingActionButton: SpeedDial(
+          //
+          //   // visible: TemplateList._selectedIndex != null,
+          //   children: [
+          //     SpeedDialChild(
+          //       child: Icon(Icons.camera_alt),
+          //       label: 'Capture'
+          //     ),
+          //     SpeedDialChild(
+          //         child: Icon(Icons.photo_library_outlined),
+          //         label: 'Library'
+          //     )
+          //   ],
+          // ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: ()=>{},
+            onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => Option())),
             label: Text("Next"),
 
           ),
@@ -73,3 +110,5 @@ class _TemplateState extends State<Template> {
     // );
   }
 }
+
+

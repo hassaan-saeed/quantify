@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'Views/home.dart';
 import 'Views/login.dart';
-import 'Views/signup.dart';
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

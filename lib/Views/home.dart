@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 
   @override
   _HomeState createState() => _HomeState();
+
 }
 
 class _HomeState extends State<Home> {
@@ -39,8 +40,9 @@ class _HomeState extends State<Home> {
         automaticallyImplyLeading: false,
         title: Center(child: Text(widget.title!)),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _widgetOptions,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

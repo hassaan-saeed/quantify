@@ -70,6 +70,7 @@ class _TemplateListState extends State<TemplateList> {
     setState(() => _selectedIndex = index);
   }
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -127,3 +128,4 @@ class _TemplateData{
   final String category;
   final String imagePath;
 }
+
